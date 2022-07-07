@@ -1,0 +1,25 @@
+<mat-card class="todocard">
+  <mat-card-title>{{ type }}</mat-card-title>
+  <span *ngIf="todoList.length === 0">No items yet!</span>
+  <mat-list role="list">
+    <mat-toolbar *ngFor="let item of todoList" class="todoitem" color="primary">
+      <mat-toolbar-row>
+        <span
+          [ngClass]="{ 'done-true': item.isDone, 'done-false': !item.isDone }"
+          >{{ item.content }}
+          <span class="dateCls">{{ item.dateCreated | date }}</span></span
+        >
+        <span class="spacer"></span>
+        <mat-icon class="btn" *ngIf="!item.isDone" (click)="changeToDone(item)">
+          check</mat-icon
+        >
+        <mat-icon class="btn" *ngIf="item.isDone" (click)="undo(item)">
+          undo</mat-icon
+        >
+
+        <mat-icon class="btn" (click)="edit(item)"> edit</mat-icon>
+        <mat-icon class="btn" (click)="delete(item)">delete</mat-icon>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </mat-list>
+</mat-card>

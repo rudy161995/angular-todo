@@ -1,0 +1,37 @@
+<mat-toolbar>To do list:</mat-toolbar>
+<form>
+  <mat-form-field>
+    <mat-placeholder>Enter To Do</mat-placeholder>
+    <input matInput [(ngModel)]="inputValue" name="inputValue" />
+    <button
+      mat-fab
+      matSuffix
+      color="accent"
+      (click)="addTodo()"
+      *ngIf="addFlag"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+    <button
+      mat-fab
+      matSuffix
+      color="accent"
+      (click)="modifyTodo()"
+      *ngIf="!addFlag"
+    >
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
+<div class="flex">
+  <app-todo-list
+    type="Active"
+    class="active"
+    (valueChange)="modify($event)"
+  ></app-todo-list>
+  <app-todo-list
+    class="mt"
+    type="Completed"
+    (valueChange)="modify($event)"
+  ></app-todo-list>
+</div>
